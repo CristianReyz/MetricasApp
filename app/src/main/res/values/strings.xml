@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">Metricas</string>
+    <string name="app_name">Métricas</string>
+
+    <string name="OP">Operadores</string>
+    <string name="OPN">Operandos</string>
+    <string name="NOP">No. operadores</string>
+    <string name="NOPN">No. operandos</string>
+    <string name="LONGITUD">Longitud</string>
+    <string name="VOCABULARIO">Vocabulario</string>
+    <string name="VOLUMEN">Volumen</string>
+    <string name="DIFICULTAD">Dificultad</string>
+    <string name="NIVEL">Nivel</string>
+    <string name="ESFUERZO">Esfuerzo</string>
+    <string name="TIEMPO">Tiempo</string>
+    <string name="BUGS">Bugs</string>
+
 </resources>

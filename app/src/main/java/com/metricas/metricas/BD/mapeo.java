@@ -17,13 +17,9 @@ public class mapeo {
     public static final String tiempo = "tiempo";
     public static final String bugs = "bugs";
 
-
-
     public static final String crearTabla = "CREATE TABLE metricas (idMetrica INTEGER PRIMARY KEY AUTOINCREMENT, ocurrenciasOperadores INTEGER," +
             "ocurrenciasOperandos INTEGER, cantidadOperadores INTEGER, cantidadOperandos INTEGER," +
             "longitud TEXT, vocabulario TEXT, volumen TEXT, dificultad TEXT, nivel TEXT, esfuerzo TEXT," +
             "tiempo TEXT, bugs TEXT)";
-
-
 
 }

@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         baseDeDatos = (Button) findViewById(R.id.botonBasesDeDatos);
         baseDeDatos.setOnClickListener(v ->{
-            Intent pasar = new Intent(MainActivity.this,verBDActivity.class);
+            Intent pasar = new Intent(MainActivity.this, datosActivity.class);
             startActivity(pasar);
         });
     }

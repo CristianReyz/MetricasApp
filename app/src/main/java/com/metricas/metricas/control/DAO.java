@@ -1,5 +1,6 @@
 package com.metricas.metricas.control;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,13 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import com.metricas.metricas.BD.conexion;
 import com.metricas.metricas.BD.mapeo;
 import com.metricas.metricas.BD.metricas;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class DAO {
 
     public static long registro;
+    public static ArrayList <String[]> listaInformacion;
+    public static ArrayList <metricas> listaMetricas;
 
     public void create(conexion conexion, metricas metrica){
         SQLiteDatabase db = conexion.getWritableDatabase();
@@ -33,15 +34,13 @@ public class DAO {
         registro = db.insert(mapeo.tabla,mapeo.id,valores);
     }
 
-    public static ArrayList <String> listaInformacion;
-    ArrayList <metricas> listaMetricas;
+    metricas metrica;
+
     public void consultar(conexion conexion){
         SQLiteDatabase db = conexion.getReadableDatabase();
-        metricas metrica = null;
         listaMetricas =new ArrayList<metricas>();
         //select * from
-        Cursor cursor=db.rawQuery("SELECT * FROM "+mapeo.tabla,null);
-
+        @SuppressLint("Recycle") Cursor cursor=db.rawQuery("SELECT * FROM "+mapeo.tabla,null);
         while (cursor.moveToNext()){
             metrica = new metricas();
             metrica.setIdMetrica(cursor.getInt(0));
@@ -58,23 +57,28 @@ public class DAO {
             metrica.setTiempo(cursor.getString(11));
             metrica.setBugs(cursor.getString(12));
             listaMetricas.add(metrica);
-
         }
-        System.out.println("cursor: " + cursor);
-        System.out.println("metricas: "+listaMetricas);
         obtenerLista();
     }
 
     private void obtenerLista() {
-        listaInformacion=new ArrayList<String>();
+        listaInformacion= new ArrayList<>();
         for (int i = 0; i< listaMetricas.size(); i++){
-            listaInformacion.add(listaMetricas.get(i).getIdMetrica()+" | " +listaMetricas.get(i).getCantidadOperadores()+" | "+
-                    listaMetricas.get(i).getCantidadOperandos()+" | "+ listaMetricas.get(i).getOcurrenciasOperadores()+" | "
-                    +listaMetricas.get(i).getOcurrenciasOperandos()+ " | "+listaMetricas.get(i).getLongitud()+" | "+
-                    listaMetricas.get(i).getVocabulario()+" | "+ listaMetricas.get(i).getVolumen()+" | "+
-                    listaMetricas.get(i).getDificultad()+" | "+ listaMetricas.get(i).getNivel()+" | "+listaMetricas.get(i).getEsfuerzo()+
-                    " | "+listaMetricas.get(i).getTiempo()+ " | "+listaMetricas.get(i).getBugs());
+            listaInformacion.add(new String[]{
+                    String.valueOf(listaMetricas.get(i).getIdMetrica()),
+                    String.valueOf(listaMetricas.get(i).getCantidadOperadores()),
+                    String.valueOf(listaMetricas.get(i).getCantidadOperandos()),
+                    String.valueOf(listaMetricas.get(i).getOcurrenciasOperadores()),
+                    String.valueOf(listaMetricas.get(i).getOcurrenciasOperandos()),
+                    listaMetricas.get(i).getLongitud(),
+                    listaMetricas.get(i).getVocabulario(),
+                    listaMetricas.get(i).getVolumen(),
+                    listaMetricas.get(i).getDificultad(),
+                    listaMetricas.get(i).getNivel(),
+                    listaMetricas.get(i).getEsfuerzo(),
+                    listaMetricas.get(i).getTiempo(),
+                    listaMetricas.get(i).getBugs()
+            });
         }
-
     }
 }

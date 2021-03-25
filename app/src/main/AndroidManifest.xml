@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Metricas">
-        <activity android:name=".verBDActivity" />
+        <activity android:name=".datosActivity"></activity>
         <activity android:name=".analizarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
